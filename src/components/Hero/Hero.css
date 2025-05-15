@@ -1,0 +1,68 @@
+/* Hero.css */
+
+.hero-container {
+    padding-top: 3rem; /* pt-5 */
+    color: white;
+    background-color: #4B5320; /* Indian Military Olive Green */
+  }
+  
+  .hero-inner-container {
+    padding-top: 3rem;    /* py-5 */
+    padding-bottom: 3rem; /* py-5 */
+  }
+  
+  @media (min-width: 768px) {
+    .hero-inner-container {
+      padding-top: 3.75rem;    /* py-md-6 */
+      padding-bottom: 3.75rem; /* py-md-6 */
+    }
+  }
+  
+  .hero-text-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 48rem;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-text-wrapper {
+      text-align: left;
+    }
+  }
+  
+  .hero-heading {
+    font-weight: 700; /* fw-bold */
+    font-size: 3rem;   /* display-5 approx */
+    margin-bottom: 1.5rem; /* mb-4 */
+    line-height: 1.2;
+  }
+  
+  .hero-button-wrapper {
+    margin-bottom: 1.5rem; /* mb-4 */
+  }
+  
+  .hero-button {
+    min-width: 180px;
+    font-weight: 600; /* fw-semibold */
+    font-size: 1.25rem; /* btn-lg approx */
+    color: white;
+    background-color: #ffc107; /* Bootstrap warning yellow */
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero-button:hover,
+  .hero-button:focus {
+    background-color: #e0a800; /* slightly darker warning */
+    color: white;
+    text-decoration: none;
+    outline: none;
+  }
+  

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CaroCartNavbar from "./components/Navbar/CaroCartNavbar";
-import Hero from "./components/Hero";
+import Hero from "./components/Hero/Hero";
 import Services from "./components/Services/Services";
 import HowItWorks from "./components/HowItWorks";
 import AboutUs from "./components/AboutUs/AboutUs";
