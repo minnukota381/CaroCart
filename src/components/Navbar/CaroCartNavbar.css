@@ -1,0 +1,33 @@
+/* CaroCartNavbar.css */
+
+.navbar-custom {
+    background-color: #556B2F !important;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-brand-custom {
+    color: white !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand-custom svg {
+    margin-right: 0.5rem;
+  }
+  
+  .nav-toggle-custom {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .nav-link-custom {
+    color: white !important;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-link-custom:hover {
+    color: #e2dbc9 !important;
+  }
+  

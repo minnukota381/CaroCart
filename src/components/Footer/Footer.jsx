@@ -1,9 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {
+  BsEnvelopeFill,
+  BsTelephoneFill,
+  BsInstagram,
+  BsTwitter,
+  BsFacebook,
+} from "react-icons/bs";
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="bg-success text-white py-4">
+    <footer>
       <div className="container">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
           <div className="mb-3 mb-md-0 d-flex gap-3">
@@ -11,33 +18,45 @@ const Footer = () => {
               href="mailto:info@carocart.in"
               className="text-white text-decoration-none d-flex align-items-center"
             >
-              <i
-                className="bi bi-envelope-fill me-2"
-                style={{ fontSize: "1rem" }}
-              ></i>
+              <BsEnvelopeFill className="me-2" size={18} />
               info@carocart.in
             </a>
             <a
               href="tel:+912345678900"
               className="text-white text-decoration-none d-flex align-items-center"
             >
-              <i
-                className="bi bi-telephone-fill me-2"
-                style={{ fontSize: "1rem" }}
-              ></i>
+              <BsTelephoneFill className="me-2" size={18} />
               +91 12345 67890
             </a>
           </div>
 
           <div className="d-flex gap-3">
-            <a href="#" className="text-white fs-5">
-              <i className="bi bi-instagram"></i>
+            <a
+              href="https://instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white fs-5"
+              aria-label="Instagram"
+            >
+              <BsInstagram size={24} />
             </a>
-            <a href="#" className="text-white fs-5">
-              <i className="bi bi-twitter"></i>
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white fs-5"
+              aria-label="Twitter"
+            >
+              <BsTwitter size={24} />
             </a>
-            <a href="#" className="text-white fs-5">
-              <i className="bi bi-facebook"></i>
+            <a
+              href="https://facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white fs-5"
+              aria-label="Facebook"
+            >
+              <BsFacebook size={24} />
             </a>
           </div>
         </div>
