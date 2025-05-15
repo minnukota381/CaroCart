@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-
-const oliveGreen = "#4B5320";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+} from "react-icons/fa";
+import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,37 +36,31 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-5 pb-5 bg-light">
+    <section className="contact-section">
       <div className="container">
-        <h2 className="text-center mb-5" style={{ color: oliveGreen }}>
-          Contact Us
-        </h2>
+        <div className="section-header">
+          <h2 className="section-title">Contact Us</h2>
+          <p className="section-subtitle">We'd love to hear from you</p>
+          <div className="divider"></div>
+        </div>
 
-        <div className="mx-auto" style={{ maxWidth: "800px" }}>
-          <div className="card p-4 shadow-sm">
+        <div className="contact-container">
+          <div className="contact-form-card">
             {submitted && (
-              <div
-                className="alert"
-                role="alert"
-                style={{ backgroundColor: oliveGreen, color: "white" }}
-              >
-                Thank you for your message! We'll get back to you soon.
+              <div className="success-message">
+                <FaPaperPlane className="success-icon" />
+                <span>
+                  Thank you for your message! We'll get back to you soon.
+                </span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit}>
-              <div className="row g-3">
-                <div className="col-md-6">
-                  <label
-                    htmlFor="name"
-                    className="form-label"
-                    style={{ color: oliveGreen }}
-                  >
-                    Name
-                  </label>
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
                   <input
                     type="text"
-                    className="form-control"
                     id="name"
                     name="name"
                     value={formData.name}
@@ -70,17 +69,10 @@ const Contact = () => {
                   />
                 </div>
 
-                <div className="col-md-6">
-                  <label
-                    htmlFor="email"
-                    className="form-label"
-                    style={{ color: oliveGreen }}
-                  >
-                    Email
-                  </label>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email"
-                    className="form-control"
                     id="email"
                     name="email"
                     value={formData.email}
@@ -88,18 +80,13 @@ const Contact = () => {
                     required
                   />
                 </div>
+              </div>
 
-                <div className="col-md-6">
-                  <label
-                    htmlFor="phone"
-                    className="form-label"
-                    style={{ color: oliveGreen }}
-                  >
-                    Phone
-                  </label>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="phone">Phone</label>
                   <input
                     type="tel"
-                    className="form-control"
                     id="phone"
                     name="phone"
                     value={formData.phone}
@@ -107,78 +94,55 @@ const Contact = () => {
                     required
                   />
                 </div>
-
-                <div className="col-md-12">
-                  <label
-                    htmlFor="message"
-                    className="form-label"
-                    style={{ color: oliveGreen }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="message"
-                    name="message"
-                    rows="4"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                </div>
-
-                <div className="col-12">
-                  <button
-                    type="submit"
-                    className="btn w-100"
-                    style={{
-                      backgroundColor: oliveGreen,
-                      color: "white",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Send Message
-                  </button>
-                </div>
               </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" className="submit-button">
+                <FaPaperPlane className="button-icon" />
+                Send Message
+              </button>
             </form>
           </div>
 
-          <div className="row mt-5 text-center g-4">
-            {[
-              {
-                icon: "bi-telephone-fill",
-                label: "Phone",
-                text: "+91 12345 67890",
-              },
-              {
-                icon: "bi-envelope-fill",
-                label: "Email",
-                text: "info@carocart.in",
-              },
-              {
-                icon: "bi-geo-alt-fill",
-                label: "Address",
-                text: "123 Military Station, Vizag, Andhra Pradesh",
-              },
-            ].map(({ icon, label, text }) => (
-              <div key={label} className="col-md-4">
-                <div className="card p-3">
-                  <div className="mb-2">
-                    <i
-                      className={`bi ${icon} fs-3`}
-                      style={{ color: oliveGreen }}
-                    ></i>
-                  </div>
-                  <h5 style={{ color: oliveGreen }}>{label}</h5>
-                  <p>{text}</p>
-                </div>
+          <div className="contact-info-cards">
+            <div className="contact-info-card">
+              <div className="info-icon">
+                <FaPhoneAlt />
               </div>
-            ))}
+              <h3>Phone</h3>
+              <p>+91 12345 67890</p>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="info-icon">
+                <FaEnvelope />
+              </div>
+              <h3>Email</h3>
+              <p>info@carocart.in</p>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="info-icon">
+                <FaMapMarkerAlt />
+              </div>
+              <h3>Address</h3>
+              <p>123 Military Station, Vizag, Andhra Pradesh</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
