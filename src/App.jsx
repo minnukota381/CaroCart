@@ -22,6 +22,8 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 
 import OurProducts from "./components/OurProducts/OurProducts";
+import Cart from "./components/Cart/Cart";
+
 
 import GetUserLocation from "./components/Location/GetUserLocation"; 
 
@@ -57,6 +59,7 @@ function App() {
           <Route path="/about" element={<AboutUs fullPage={true} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/cart" element={<Cart />} />
 
           {/* User Authentication */}
           <Route path="/login" element={<UserLogin />} />

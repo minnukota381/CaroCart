@@ -8,14 +8,16 @@ import {
   FaPhoneAlt,
   FaShoppingBag,
   FaUserCircle,
+  FaCartArrowDown,
 } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./CaroCartNavbar.css";
 
 const CaroCartNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +37,25 @@ const CaroCartNavbar = () => {
     { label: "About Us", icon: <FaInfoCircle />, path: "/about" },
     { label: "Contact", icon: <FaPhoneAlt />, path: "/contact" },
     { label: "Order Now", icon: <FaShoppingBag />, path: "/order" },
+    { label: "Cart", icon: <FaCartArrowDown />, path: "/cart" }, // Added Cart here
   ];
+
+  // Handle nav link click
+  const handleNavClick = (e, path) => {
+    if (path === "/cart") {
+      // Check login for Cart
+      const token = localStorage.getItem("token");
+      if (!token) {
+        e.preventDefault();
+        alert("Please login to view your cart.");
+        navigate("/login");
+      } else {
+        // You can replace this alert with actual cart logic or navigate to cart page if created
+        e.preventDefault();
+        alert("Showing your cart (cart page not implemented yet).");
+      }
+    }
+  };
 
   return (
     <Navbar
@@ -63,6 +83,7 @@ const CaroCartNavbar = () => {
                 as={Link}
                 to={path}
                 className="nav-link-custom d-flex align-items-center gap-2"
+                onClick={(e) => handleNavClick(e, path)}
               >
                 {icon}
                 <span>{label}</span>
