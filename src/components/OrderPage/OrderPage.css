@@ -1,0 +1,23 @@
+.order-page-container {
+    background: linear-gradient(to bottom right, #e8f5e9, #ffffff);
+    min-height: 100vh;
+  }
+  
+  .service-btn {
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .service-btn:hover {
+    background-color: #e0f2f1;
+    border-color: #26a69a;
+  }
+  
+  .active-service {
+    background-color: #c8e6c9;
+    border-color: #388e3c !important;
+    color: #1b5e20;
+  }
+  
