@@ -8,11 +8,14 @@ import {
   FaPhoneAlt,
   FaShoppingBag,
 } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import "./CaroCartNavbar.css";
 
 const CaroCartNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +25,17 @@ const CaroCartNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Collapse menu when route changes
+  useEffect(() => {
+    setExpanded(false);
+  }, [location]);
+
   const navItems = [
-    { label: "Home", icon: <FaHome /> },
-    { label: "Services", icon: <FaConciergeBell /> },
-    { label: "About Us", icon: <FaInfoCircle /> },
-    { label: "Contact", icon: <FaPhoneAlt /> },
-    { label: "Order Now", icon: <FaShoppingBag /> },
+    { label: "Home", icon: <FaHome />, path: "/" },
+    { label: "Services", icon: <FaConciergeBell />, path: "/services" },
+    { label: "About Us", icon: <FaInfoCircle />, path: "/about" },
+    { label: "Contact", icon: <FaPhoneAlt />, path: "/contact" },
+    { label: "Order Now", icon: <FaShoppingBag />, path: "/order" },
   ];
 
   return (
@@ -39,7 +47,7 @@ const CaroCartNavbar = () => {
       className={`shadow-sm navbar-custom ${scrolled ? "scrolled" : ""}`}
     >
       <Container>
-        <Navbar.Brand href="#home" className="navbar-brand-custom">
+        <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
           <ShoppingCart size={24} color="white" />
           CaroCart
         </Navbar.Brand>
@@ -50,10 +58,11 @@ const CaroCartNavbar = () => {
 
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto gap-md-3">
-            {navItems.map(({ label, icon }) => (
+            {navItems.map(({ label, icon, path }) => (
               <Nav.Link
                 key={label}
-                href={`#${label.toLowerCase().replace(" ", "-")}`}
+                as={Link}
+                to={path}
                 className="nav-link-custom d-flex align-items-center gap-2"
               >
                 {icon}
