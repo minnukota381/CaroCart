@@ -41,8 +41,12 @@ const UserLogin = () => {
       return;
     }
 
-    // Call backend login API here later
-    navigate("/user/dashboard");
+    // Simulate successful login: store token and flag
+    localStorage.setItem("token", "dummy-token"); // Store dummy token (replace with real token)
+    localStorage.setItem("isUserLoggedIn", "true"); // Store login flag
+
+    setIsLoading(false);
+    navigate("/user/dashboard"); // Redirect to user dashboard
   };
 
   return (

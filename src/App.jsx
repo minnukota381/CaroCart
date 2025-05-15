@@ -5,6 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+
 import CaroCartNavbar from "./components/Navbar/CaroCartNavbar";
 import Hero from "./components/Hero/Hero";
 import Services from "./components/Services/Services";
@@ -20,9 +21,10 @@ import UserRegister from "./components/Auth/UserRegister";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 
+// Protected route component for admin pages
 const RequireAdminAuth = ({ children }) => {
   const isLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
-  return isLoggedIn ? children : <Navigate to="/admin/login" />;
+  return isLoggedIn ? children : <Navigate to="/admin/login" replace />;
 };
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
         <CaroCartNavbar />
 
         <Routes>
+          {/* Public Routes */}
           <Route
             path="/"
             element={
@@ -48,12 +51,14 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/order" element={<OrderPage />} />
 
-          {/* User Auth */}
+          {/* User Authentication */}
           <Route path="/login" element={<UserLogin />} />
           <Route path="/register" element={<UserRegister />} />
 
-          {/* Admin Auth */}
+          {/* Admin Authentication */}
           <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* Protected Admin Dashboard */}
           <Route
             path="/admin/dashboard"
             element={
@@ -62,6 +67,9 @@ function App() {
               </RequireAdminAuth>
             }
           />
+
+          {/* Fallback route for unknown URLs */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
         <Footer />
