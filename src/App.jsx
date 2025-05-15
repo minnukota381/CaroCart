@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import CaroCartNavbar from "./components/Navbar/CaroCartNavbar";
 import Hero from "./components/Hero";
-import Services from "./components/Services";
+import Services from "./components/Services/Services";
 import HowItWorks from "./components/HowItWorks";
-import AboutUs from "./components/AboutUs";
-import Footer from "./components/Footer";
-import Contact from "./components/Contact";
+import AboutUs from "./components/AboutUs/AboutUs";
+import Footer from "./components/Footer/Footer";
+import Contact from "./components/Contact/Contact";
 import OrderPage from "./components/OrderPage";
 import "./App.css";
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Navbar />
+        <CaroCartNavbar />
         <Routes>
           <Route
             path="/"

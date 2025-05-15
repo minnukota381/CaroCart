@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const indianMilitaryOliveGreen = "#4B5320";
+
 const Hero = () => {
   return (
-    <div className="pt-5 bg-success text-white">
+    <div
+      className="pt-5 text-white"
+      style={{ backgroundColor: indianMilitaryOliveGreen }}
+    >
       <div className="container py-5 py-md-6">
         <div
           className="mx-auto text-center text-md-start"
