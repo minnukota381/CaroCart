@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { ShoppingCart, Menu } from "lucide-react";
+import {
+  FaHome,
+  FaConciergeBell,
+  FaInfoCircle,
+  FaPhoneAlt,
+  FaShoppingBag,
+} from "react-icons/fa";
 import "./CaroCartNavbar.css";
 
 const CaroCartNavbar = () => {
@@ -14,6 +21,14 @@ const CaroCartNavbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navItems = [
+    { label: "Home", icon: <FaHome /> },
+    { label: "Services", icon: <FaConciergeBell /> },
+    { label: "About Us", icon: <FaInfoCircle /> },
+    { label: "Contact", icon: <FaPhoneAlt /> },
+    { label: "Order Now", icon: <FaShoppingBag /> },
+  ];
 
   return (
     <Navbar
@@ -35,17 +50,16 @@ const CaroCartNavbar = () => {
 
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto gap-md-3">
-            {["Home", "Services", "About Us", "Contact", "Order Now"].map(
-              (item) => (
-                <Nav.Link
-                  key={item}
-                  href={`#${item.toLowerCase().replace(" ", "-")}`}
-                  className="nav-link-custom"
-                >
-                  {item}
-                </Nav.Link>
-              )
-            )}
+            {navItems.map(({ label, icon }) => (
+              <Nav.Link
+                key={label}
+                href={`#${label.toLowerCase().replace(" ", "-")}`}
+                className="nav-link-custom d-flex align-items-center gap-2"
+              >
+                {icon}
+                <span>{label}</span>
+              </Nav.Link>
+            ))}
           </Nav>
         </Navbar.Collapse>
       </Container>

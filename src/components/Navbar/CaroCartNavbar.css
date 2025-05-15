@@ -1,7 +1,5 @@
-/* CaroCartNavbar.css */
-
 .navbar-custom {
-    background-color: #556B2F !important;
+    background-color: #586F55 !important;
     transition: background-color 0.3s ease;
   }
   
@@ -24,7 +22,14 @@
   .nav-link-custom {
     color: white !important;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     transition: color 0.2s ease;
+  }
+  
+  .nav-link-custom svg {
+    font-size: 1rem;
   }
   
   .nav-link-custom:hover {
