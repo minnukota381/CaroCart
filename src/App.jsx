@@ -21,6 +21,8 @@ import UserRegister from "./components/Auth/UserRegister";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 
+import OurProducts from "./components/OurProducts/OurProducts";
+
 // Protected route component for admin pages
 const RequireAdminAuth = ({ children }) => {
   const isLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
@@ -41,6 +43,7 @@ function App() {
               <>
                 <Hero />
                 <Services />
+                <OurProducts />
                 <HowItWorks />
                 <AboutUs />
               </>
