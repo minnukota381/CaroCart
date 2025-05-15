@@ -35,4 +35,14 @@
   .nav-link-custom:hover {
     color: #e2dbc9 !important;
   }
-  
+  /* Optional: Ensure dropdown has white background */
+.login-dropdown .dropdown-menu {
+  background-color: #ffffff;
+}
+.login-dropdown .dropdown-item {
+  color: #333;
+}
+.login-dropdown .dropdown-item:hover {
+  background-color: #f1f1f1;
+  color: #000;
+}

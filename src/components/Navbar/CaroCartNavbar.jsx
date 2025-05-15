@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { ShoppingCart, Menu } from "lucide-react";
 import {
   FaHome,
@@ -7,6 +7,7 @@ import {
   FaInfoCircle,
   FaPhoneAlt,
   FaShoppingBag,
+  FaUserCircle,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import "./CaroCartNavbar.css";
@@ -14,7 +15,6 @@ import "./CaroCartNavbar.css";
 const CaroCartNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
-
   const location = useLocation();
 
   useEffect(() => {
@@ -25,7 +25,6 @@ const CaroCartNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Collapse menu when route changes
   useEffect(() => {
     setExpanded(false);
   }, [location]);
@@ -57,7 +56,7 @@ const CaroCartNavbar = () => {
         </Navbar.Toggle>
 
         <Navbar.Collapse id="navbar-nav">
-          <Nav className="ms-auto gap-md-3">
+          <Nav className="ms-auto gap-md-3 align-items-center">
             {navItems.map(({ label, icon, path }) => (
               <Nav.Link
                 key={label}
@@ -69,6 +68,29 @@ const CaroCartNavbar = () => {
                 <span>{label}</span>
               </Nav.Link>
             ))}
+
+            {/* Login / Sign Up Dropdown */}
+            <NavDropdown
+              title={
+                <span className="d-flex align-items-center text-white gap-2">
+                  <FaUserCircle />
+                  Login / Sign Up
+                </span>
+              }
+              id="login-dropdown"
+              className="login-dropdown"
+            >
+              <NavDropdown.Item as={Link} to="/login">
+                User Login
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/register">
+                User Sign Up
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/admin">
+                Admin Login
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
