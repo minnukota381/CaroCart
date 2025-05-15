@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CaroCartNavbar from "./components/Navbar/CaroCartNavbar";
 import Hero from "./components/Hero/Hero";
 import Services from "./components/Services/Services";
-import HowItWorks from "./components/HowItWorks";
+import HowItWorks from "./components/HowItWorks/HowItWorks";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Footer from "./components/Footer/Footer";
 import Contact from "./components/Contact/Contact";
-import OrderPage from "./components/OrderPage";
+import OrderPage from "./components/OrderPage/OrderPage";
 import "./App.css";
 
 function App() {
