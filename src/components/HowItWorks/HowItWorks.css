@@ -1,0 +1,275 @@
+.how-it-works {
+    padding: 5rem 0;
+    background-color: #dce4cc;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .how-it-works::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(233, 245, 233, 0.6) 0%, rgba(255, 255, 255, 0.8) 100%);
+    z-index: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: #616161;
+    margin-bottom: 1.5rem;
+  }
+  
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #4caf50, #8bc34a);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  
+  .steps-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  .step {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+    padding: 0 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .step-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .step-icon-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .step-number {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+  }
+  
+  .step-icon {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+    font-size: 2.5rem;
+    color: #4caf50;
+    transition: all 0.3s ease;
+  }
+  
+  .step:hover .step-icon {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  
+  .step-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 1rem;
+  }
+  
+  .step-description {
+    color: #616161;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .step-connector {
+    position: absolute;
+    top: 60px;
+    left: calc(100% - 30px);
+    width: calc(100% - 60px);
+    height: 4px;
+    z-index: 1;
+  }
+  
+  .step-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e0e0e0;
+    transform: translateY(-50%);
+  }
+  
+  .step-dots {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+  
+  .step-dots span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #4caf50;
+    border-radius: 50%;
+  }
+  
+  /* Special icon styles */
+  .dual-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .whatsapp-icon {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: #25D366;
+  }
+  
+  .phone-icon {
+    position: absolute;
+    bottom: 30%;
+    right: 30%;
+    transform: translate(50%, 50%);
+  }
+  
+  .box-icon {
+    color: #FF9800;
+  }
+  
+  .truck-icon {
+    color: #2196F3;
+  }
+  
+  .guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 2rem auto 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .check-icon {
+    color: #4caf50;
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+  }
+  
+  .guarantee-badge span {
+    color: #2e7d32;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 992px) {
+    .steps-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .step {
+      width: 100%;
+      max-width: 350px;
+      margin-bottom: 4rem;
+    }
+    
+    .step-connector {
+      top: 100%;
+      left: 50%;
+      width: 4px;
+      height: 60px;
+      transform: translateX(-50%);
+    }
+    
+    .step-line {
+      width: 2px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+    
+    .step-dots {
+      flex-direction: column;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+    
+    .step-dots span {
+      margin: 10px 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .how-it-works {
+    animation: pulse 8s ease-in-out infinite;
+  }
