@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from "react";
 
 const GetUserLocation = () => {
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
-  const [error, setError] = useState(null);
+  const [address, setAddress] = useState("Fetching location...");
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
+      setAddress("Geolocation not supported");
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-        setError(null);
+        const { latitude, longitude } = position.coords;
+
+        fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            const { city, town, village, state } = data.address || {};
+            if (city || town || village || state) {
+              setAddress(
+                `${city || town || village || "Unknown"}, ${state || ""}`
+              );
+            } else {
+              setAddress("Unknown location");
+            }
+          })
+          .catch(() => setAddress("Location fetch failed"));
       },
-      (err) => {
-        setError("Permission denied or unable to get location");
-      }
+      () => setAddress("Location access denied")
     );
   }, []);
 
-  return (
-    <div>
-      {location.latitude && location.longitude && (
-        <p>
-          Your Location: Latitude {location.latitude}, Longitude{" "}
-          {location.longitude}
-        </p>
-      )}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
-  );
+  return <span style={{ fontSize: "0.8rem" }}>{address}</span>;
 };
 
 export default GetUserLocation;
