@@ -18,17 +18,15 @@ const UserLogin = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(""); // Clear error when typing
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Basic validation
     if (!formData.email.includes("@")) {
       setError("Please enter a valid email address");
       setIsLoading(false);
@@ -41,12 +39,16 @@ const UserLogin = () => {
       return;
     }
 
-    // Simulate successful login: store token and flag
-    localStorage.setItem("token", "dummy-token"); // Store dummy token (replace with real token)
-    localStorage.setItem("isUserLoggedIn", "true"); // Store login flag
+    // Simulate login
+    localStorage.setItem("token", "dummy-token");
+    localStorage.setItem("isUserLoggedIn", "true");
+
+    const redirectTo =
+      localStorage.getItem("redirectAfterLogin") || "/user/dashboard";
+    localStorage.removeItem("redirectAfterLogin");
 
     setIsLoading(false);
-    navigate("/user/dashboard"); // Redirect to user dashboard
+    navigate(redirectTo);
   };
 
   return (

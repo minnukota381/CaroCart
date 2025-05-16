@@ -24,11 +24,6 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import OurProducts from "./components/OurProducts/OurProducts";
 import Cart from "./components/Cart/Cart";
 
-
-import GetUserLocation from "./components/Location/GetUserLocation"; 
-
-
-// Protected route component for admin pages
 const RequireAdminAuth = ({ children }) => {
   const isLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
   return isLoggedIn ? children : <Navigate to="/admin/login" replace />;
@@ -41,13 +36,11 @@ function App() {
         <CaroCartNavbar />
 
         <Routes>
-          {/* Public Routes */}
           <Route
             path="/"
             element={
               <>
                 <Hero />
-                {/* <GetUserLocation /> */}
                 <Services />
                 <OurProducts />
                 <HowItWorks />
@@ -78,7 +71,6 @@ function App() {
             }
           />
 
-          {/* Fallback route for unknown URLs */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 

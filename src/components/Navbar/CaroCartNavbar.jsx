@@ -43,17 +43,10 @@ const CaroCartNavbar = () => {
 
   const handleNavClick = (e, path) => {
     if (path === "/cart") {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        e.preventDefault();
-        alert("Please login to view your cart.");
-        navigate("/login");
-      } else {
-        e.preventDefault();
-        alert("Showing your cart (cart page not implemented yet).");
-      }
+      localStorage.setItem("redirectAfterLogin", "/cart");
     }
   };
+  
 
   return (
     <Navbar

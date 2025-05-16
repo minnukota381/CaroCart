@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaHeart, FaLeaf, FaMugHot } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaPlus,
+  FaMinus,
+  FaLeaf,
+  FaMugHot,
+} from "react-icons/fa";
 import "./OurProducts.css";
 
 const OurProducts = () => {
@@ -30,13 +36,28 @@ const OurProducts = () => {
     },
   ];
 
-  const handleOrderClick = (product) => {
+  const [quantities, setQuantities] = useState(
+    products.reduce((acc, product) => ({ ...acc, [product.id]: 1 }), {})
+  );
+
+  const handleQuantityChange = (id, increment) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max(1, prev[id] + increment),
+    }));
+  };
+
+  const handleAddToCart = (product) => {
     if (!isUserLoggedIn) {
-      alert("Please login to order this product.");
       navigate("/login");
       return;
     }
-    navigate("/order", { state: { product } });
+
+    const quantity = quantities[product.id];
+    // You can now send this to your backend cart or store it in context/state
+    console.log("Add to cart:", { product, quantity });
+
+    navigate("/cart", { state: { product, quantity } });
   };
 
   return (
@@ -66,12 +87,23 @@ const OurProducts = () => {
 
                 <div className="product-footer">
                   <div className="product-price">₹{product.price}</div>
+                  <div className="quantity-control">
+                    <button
+                      onClick={() => handleQuantityChange(product.id, -1)}
+                    >
+                      <FaMinus />
+                    </button>
+                    <span>{quantities[product.id]}</span>
+                    <button onClick={() => handleQuantityChange(product.id, 1)}>
+                      <FaPlus />
+                    </button>
+                  </div>
                   <button
                     className="order-button"
-                    onClick={() => handleOrderClick(product)}
+                    onClick={() => handleAddToCart(product)}
                   >
                     <FaShoppingCart className="button-icon" />
-                    Order Now
+                    Add to Cart
                   </button>
                 </div>
               </div>
