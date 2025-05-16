@@ -11,6 +11,7 @@ import {
   FaCartArrowDown,
 } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import GetUserLocation from "../Location/GetUserLocation";
 import "./CaroCartNavbar.css";
 
 const CaroCartNavbar = () => {
@@ -37,20 +38,17 @@ const CaroCartNavbar = () => {
     { label: "About Us", icon: <FaInfoCircle />, path: "/about" },
     { label: "Contact", icon: <FaPhoneAlt />, path: "/contact" },
     { label: "Order Now", icon: <FaShoppingBag />, path: "/order" },
-    { label: "Cart", icon: <FaCartArrowDown />, path: "/cart" }, // Added Cart here
+    { label: "Cart", icon: <FaCartArrowDown />, path: "/cart" },
   ];
 
-  // Handle nav link click
   const handleNavClick = (e, path) => {
     if (path === "/cart") {
-      // Check login for Cart
       const token = localStorage.getItem("token");
       if (!token) {
         e.preventDefault();
         alert("Please login to view your cart.");
         navigate("/login");
       } else {
-        // You can replace this alert with actual cart logic or navigate to cart page if created
         e.preventDefault();
         alert("Showing your cart (cart page not implemented yet).");
       }
@@ -59,16 +57,21 @@ const CaroCartNavbar = () => {
 
   return (
     <Navbar
-      expand="md"
+      expand="lg"
       fixed="top"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
       className={`shadow-sm navbar-custom ${scrolled ? "scrolled" : ""}`}
     >
-      <Container>
+      <Container fluid="xxl">
         <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
-          <ShoppingCart size={24} color="white" />
-          CaroCart
+          <div className="brand-content">
+            <ShoppingCart size={24} color="white" />
+            <span className="brand-name">CaroCart</span>
+          </div>
+          <div className="location-info">
+            <GetUserLocation />
+          </div>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" className="nav-toggle-custom">
@@ -76,43 +79,47 @@ const CaroCartNavbar = () => {
         </Navbar.Toggle>
 
         <Navbar.Collapse id="navbar-nav">
-          <Nav className="ms-auto gap-md-3 align-items-center">
-            {navItems.map(({ label, icon, path }) => (
-              <Nav.Link
-                key={label}
-                as={Link}
-                to={path}
-                className="nav-link-custom d-flex align-items-center gap-2"
-                onClick={(e) => handleNavClick(e, path)}
-              >
-                {icon}
-                <span>{label}</span>
-              </Nav.Link>
-            ))}
+          <div className="navbar-content-wrapper">
+            <Nav className="nav-items">
+              {navItems.map(({ label, icon, path }) => (
+                <Nav.Link
+                  key={label}
+                  as={Link}
+                  to={path}
+                  className="nav-link-custom"
+                  onClick={(e) => handleNavClick(e, path)}
+                >
+                  <span className="nav-icon">{icon}</span>
+                  <span className="nav-label">{label}</span>
+                </Nav.Link>
+              ))}
+            </Nav>
 
-            {/* Login / Sign Up Dropdown */}
-            <NavDropdown
-              title={
-                <span className="d-flex align-items-center text-white gap-2">
-                  <FaUserCircle />
-                  Login / Sign Up
-                </span>
-              }
-              id="login-dropdown"
-              className="login-dropdown"
-            >
-              <NavDropdown.Item as={Link} to="/login">
-                User Login
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/register">
-                User Sign Up
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/admin">
-                Admin Login
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+            <div className="user-dropdown-wrapper">
+              <NavDropdown
+                title={
+                  <span className="user-dropdown-title">
+                    <FaUserCircle className="user-icon" />
+                    <span className="user-text">Login / Sign Up</span>
+                  </span>
+                }
+                id="login-dropdown"
+                className="login-dropdown"
+                align="end"
+              >
+                <NavDropdown.Item as={Link} to="/login">
+                  User Login
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/register">
+                  User Sign Up
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item as={Link} to="/admin">
+                  Admin Login
+                </NavDropdown.Item>
+              </NavDropdown>
+            </div>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
