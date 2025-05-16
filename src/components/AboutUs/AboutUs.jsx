@@ -30,6 +30,53 @@ const AboutUs = ({ fullPage = false }) => {
             {fullPage && (
               <div className="additional-info">
                 <div className="info-block">
+                  <h3 className="info-title">
+                    Why CaroCart for Army Families?
+                  </h3>
+                  <p className="info-text">
+                    Serving those who serve: CaroCart for Army families. At
+                    CaroCart, we deeply respect the courage, discipline, and
+                    dedication of our Indian Army personnel. We understand that
+                    army families lead unique lives, often away from home and
+                    under tight schedules.
+                    <br />
+                    <br />
+                    That’s why we created CaroCart – a quick delivery service
+                    specially designed for army families. Whether it's a grocery
+                    refill, urgent medicine, fresh food, emergency services or
+                    important documents, our trained and verified delivery staff
+                    are ready to serve, so you can focus on what matters most.
+                  </p>
+                </div>
+
+                <div className="info-block">
+                  <h3 className="info-title">What Makes CaroCart Different?</h3>
+                  <ul className="info-text">
+                    <li>
+                      <strong>Military Precision:</strong> Timely, reliable, and
+                      respectful delivery.
+                    </li>
+                    <li>
+                      <strong>Trusted Team:</strong> Locally verified delivery
+                      partners.
+                    </li>
+                    <li>
+                      <strong>Essentials Delivered Fast:</strong> Groceries,
+                      food, medicines & more at your doorstep.
+                    </li>
+                    <li>
+                      <strong>Community Commitment:</strong> Proudly supporting
+                      the needs of our heroes and their families.
+                    </li>
+                  </ul>
+                  <p className="info-text mt-3">
+                    We salute your service. Let us serve you in return.
+                    <br />
+                    <strong>Jai Hind 🇮🇳</strong>
+                  </p>
+                </div>
+
+                <div className="info-block">
                   <h3 className="info-title">Our Mission</h3>
                   <p className="info-text">
                     To provide military families in Vizagapatam with convenient,
