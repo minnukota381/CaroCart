@@ -47,7 +47,7 @@ function App() {
             element={
               <>
                 <Hero />
-                <GetUserLocation />
+                {/* <GetUserLocation /> */}
                 <Services />
                 <OurProducts />
                 <HowItWorks />
