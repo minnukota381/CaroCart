@@ -40,7 +40,7 @@ function App() {
             path="/"
             element={
               <>
-                <Hero />
+                {/* <Hero /> */}
                 <Services />
                 <OurProducts />
                 <HowItWorks />
