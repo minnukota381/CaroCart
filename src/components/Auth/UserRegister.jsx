@@ -29,9 +29,8 @@ const UserRegister = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Clear error when user types
     if (errors[name]) {
-      setErrors({ ...errors, [name]: "" });
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -42,12 +41,13 @@ const UserRegister = () => {
       newErrors.name = "Name is required";
     }
 
-    if (!formData.email.includes("@")) {
-      newErrors.email = "Please enter a valid email";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
     }
 
-    if (!formData.phone.match(/^\d{10}$/)) {
-      newErrors.phone = "Please enter a valid 10-digit phone number";
+    if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Phone must be a valid 10-digit number";
     }
 
     if (formData.password.length < 8) {
@@ -64,7 +64,6 @@ const UserRegister = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -75,17 +74,16 @@ const UserRegister = () => {
     setIsSubmitting(false);
     setIsSuccess(true);
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        password: "",
-        confirmPassword: "",
-      });
-      setIsSuccess(false);
-    }, 3000);
+    // Reset form immediately after showing success
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    });
+
+    setTimeout(() => setIsSuccess(false), 3000);
   };
 
   return (
@@ -103,7 +101,8 @@ const UserRegister = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="register-form">
+        <form onSubmit={handleSubmit} className="register-form" noValidate>
+          {/* Full Name */}
           <div className="form-group">
             <label htmlFor="name">
               <FaUser className="input-icon" /> Full Name
@@ -122,6 +121,7 @@ const UserRegister = () => {
             )}
           </div>
 
+          {/* Email */}
           <div className="form-group">
             <label htmlFor="email">
               <FaEnvelope className="input-icon" /> Email
@@ -140,6 +140,7 @@ const UserRegister = () => {
             )}
           </div>
 
+          {/* Phone */}
           <div className="form-group">
             <label htmlFor="phone">
               <FaPhone className="input-icon" /> Phone
@@ -158,6 +159,7 @@ const UserRegister = () => {
             )}
           </div>
 
+          {/* Password */}
           <div className="form-group">
             <label htmlFor="password">
               <FaLock className="input-icon" /> Password
@@ -186,6 +188,7 @@ const UserRegister = () => {
             )}
           </div>
 
+          {/* Confirm Password */}
           <div className="form-group">
             <label htmlFor="confirmPassword">
               <FaLock className="input-icon" /> Confirm Password
@@ -216,6 +219,7 @@ const UserRegister = () => {
             )}
           </div>
 
+          {/* Submit */}
           <button
             type="submit"
             className="register-button"

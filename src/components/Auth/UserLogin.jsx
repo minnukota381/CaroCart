@@ -25,7 +25,7 @@ const UserLogin = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // simulate network delay
 
     if (!formData.email.includes("@")) {
       setError("Please enter a valid email address");
@@ -39,9 +39,14 @@ const UserLogin = () => {
       return;
     }
 
-    // Simulate login
-    localStorage.setItem("token", "dummy-token");
-    localStorage.setItem("isUserLoggedIn", "true");
+    // ✅ Simulated user object
+    const userData = {
+      name: formData.email.split("@")[0], // Simulated name
+      email: formData.email,
+    };
+
+    // ✅ Store user info in localStorage
+    localStorage.setItem("carocartUser", JSON.stringify(userData));
 
     const redirectTo =
       localStorage.getItem("redirectAfterLogin") || "/user/dashboard";

@@ -17,6 +17,8 @@ import "./CaroCartNavbar.css";
 const CaroCartNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [user, setUser] = useState(null);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -29,8 +31,28 @@ const CaroCartNavbar = () => {
   }, []);
 
   useEffect(() => {
+    // Get user from localStorage
+    const storedUser = localStorage.getItem("carocartUser");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
     setExpanded(false);
   }, [location]);
+
+  const handleNavClick = (e, path) => {
+    if (path === "/cart") {
+      localStorage.setItem("redirectAfterLogin", "/cart");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("carocartUser");
+    setUser(null);
+    navigate("/");
+    window.location.reload();
+  };
 
   const navItems = [
     { label: "Home", icon: <FaHome />, path: "/" },
@@ -40,13 +62,6 @@ const CaroCartNavbar = () => {
     { label: "Order Now", icon: <FaShoppingBag />, path: "/order" },
     { label: "Cart", icon: <FaCartArrowDown />, path: "/cart" },
   ];
-
-  const handleNavClick = (e, path) => {
-    if (path === "/cart") {
-      localStorage.setItem("redirectAfterLogin", "/cart");
-    }
-  };
-  
 
   return (
     <Navbar
@@ -89,28 +104,55 @@ const CaroCartNavbar = () => {
             </Nav>
 
             <div className="user-dropdown-wrapper">
-              <NavDropdown
-                title={
-                  <span className="user-dropdown-title">
-                    <FaUserCircle className="user-icon" />
-                    <span className="user-text">Login / Sign Up</span>
-                  </span>
-                }
-                id="login-dropdown"
-                className="login-dropdown"
-                align="end"
-              >
-                <NavDropdown.Item as={Link} to="/login">
-                  User Login
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/register">
-                  User Sign Up
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/admin">
-                  Admin Login
-                </NavDropdown.Item>
-              </NavDropdown>
+              {user ? (
+                <NavDropdown
+                  title={
+                    <span className="user-dropdown-title">
+                      <FaUserCircle className="user-icon" />
+                      <span className="user-text">
+                        {user.name || "My Account"}
+                      </span>
+                    </span>
+                  }
+                  id="user-dropdown"
+                  className="login-dropdown"
+                  align="end"
+                >
+                  <NavDropdown.Item as={Link} to="/profile">
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/orders">
+                    My Orders
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <NavDropdown
+                  title={
+                    <span className="user-dropdown-title">
+                      <FaUserCircle className="user-icon" />
+                      <span className="user-text">Login / Sign Up</span>
+                    </span>
+                  }
+                  id="login-dropdown"
+                  className="login-dropdown"
+                  align="end"
+                >
+                  <NavDropdown.Item as={Link} to="/login">
+                    User Login
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/register">
+                    User Sign Up
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item as={Link} to="/admin">
+                    Admin Login
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
             </div>
           </div>
         </Navbar.Collapse>
